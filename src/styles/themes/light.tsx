@@ -4,10 +4,12 @@ const light: DefaultTheme = {
   title: 'light',
 
   colors: {
+    barStyle: 'dark-content',
     text: 'black',
     background: 'white',
     card: 'white',
-    border: 'black'
+    border: '#CFCFCF',
+    icon: '#13A128'
   }
 }
 

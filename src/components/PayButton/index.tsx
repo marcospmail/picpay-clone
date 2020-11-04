@@ -1,6 +1,5 @@
-import React, { InputHTMLAttributes } from 'react'
+import React from 'react'
 import { ViewProps, Text } from 'react-native'
-
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { Container } from './styles'

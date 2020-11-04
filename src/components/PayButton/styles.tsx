@@ -5,7 +5,7 @@ export const Container = styled(RectButton)`
   width: 60px;
   height: 60px;
   border-radius: 30px;
-  background-color: green;
+  background-color: #00ac4b;
   padding: 10px;
 
   display: flex;

@@ -1,10 +1,15 @@
 import styled, { css } from 'styled-components/native'
+import { StatusBar } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
 import Separator from '../../components/Sepatator'
 
+interface TypeTextProps {
+  selected?: boolean
+}
+
 export const Container = styled.ScrollView.attrs(props => ({
-  stickyHeaderIndices: [3],
+  stickyHeaderIndices: [4],
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
     paddingBottom: 20,
@@ -12,6 +17,7 @@ export const Container = styled.ScrollView.attrs(props => ({
   }
 }))`
   flex: 1;
+  margin-top: ${StatusBar.currentHeight}px;
 `
 
 export const Header = styled.View`
@@ -19,7 +25,9 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  margin-top: 5px;
   background-color: ${({ theme }) => theme.colors.background};
+  position: relative;
 `
 
 export const HeaderRight = styled.View`
@@ -28,11 +36,29 @@ export const HeaderRight = styled.View`
 
 export const Balance = styled.View`
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+`
+
+export const PayInput = styled.TextInput`
+  margin: 0 auto;
+  width: 95%;
+  margin-top: 10px;
+  padding: 5px 15px;
+  border: 1px solid #898d8c80;
+  border-radius: 20px;
+`
+
+export const PayInputText = styled.Text`
+  font-size: 16px;
+  color: #000000cc;
 `
 
 export const BalanceLabel = styled.Text`
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.text};
+  font-size: 12px;
+  color: #000;
 `
 
 export const BalanceValue = styled.Text`
@@ -47,19 +73,25 @@ export const SubHeader = styled.View`
 
 export const Options = styled.View`
   flex-direction: row;
+  margin-top: 15px;
 `
 
-export const ChooseOptionsItem = styled(RectButton)`
+export const OptionType = styled(RectButton)`
   margin-left: 10px;
 `
 
-export const ChooseOptionsItemText = styled.Text`
-  font-size: 16px;
+export const OptionTypeText = styled.Text<TypeTextProps>`
+  font-size: 13px;
   font-weight: bold;
   padding: 15px;
-  border-bottom-color: ${({ theme }) => theme.colors.border};
-  border-bottom-width: 2px;
-  color: ${({ theme }) => theme.colors.text};
+  color: #404543;
+
+  ${({ selected = false }) =>
+    selected &&
+    css`
+      border-bottom-color: ${({ theme }) => theme.colors.border};
+      border-bottom-width: 2px;
+    `}
 `
 
 export const OptionItems = styled.ScrollView.attrs({
@@ -70,36 +102,19 @@ export const OptionItems = styled.ScrollView.attrs({
   flex-direction: row;
 `
 
-export const Item = styled.View`
-  align-items: center;
-  width: 100px;
-`
-
-export const ItemIcon = styled.View`
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  border: 2px solid ${({ theme }) => theme.colors.border};
-  background-color: ${({ theme }) => theme.colors.card};
-`
-
-export const ItemTextWrap = styled.View`
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-export const ItemText = styled.Text`
-  margin-top: 5px;
-  font-weight: bold;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.text};
-`
-
 export const MySeparator = styled(Separator)`
   margin-top: 20px;
 `
+
+export const ActivityItemsContainer = styled.View`
+  z-index: 0;
+  flex: 1;
+  padding: 5px 10px;
+`
+
+export const ActivitySuggestions = styled.ScrollView.attrs({
+  horizontal: true
+})``
 
 export const ActivityHeader = styled.View`
   z-index: 1;
@@ -115,9 +130,9 @@ export const ActivityHeader = styled.View`
 export const ActivityHeaderTitle = styled.Text`
   font-weight: bold;
   margin-left: 10px;
-  font-size: 16px;
+  font-size: 15px;
 
-  color: ${({ theme }) => theme.colors.text};
+  color: #44424c;
 `
 
 export const ActivityHeaderOptions = styled.View`
@@ -128,113 +143,17 @@ export const ActivityHeaderOption = styled(RectButton)`
   margin-right: 10px;
 `
 
-export const ActivityHeaderOptionText = styled.Text`
+export const ActivityHeaderOptionText = styled.Text<TypeTextProps>`
   font-weight: bold;
   padding: 15px;
-  border-bottom-color: ${({ theme }) => theme.colors.border};
-  border-bottom-width: 2px;
-  font-size: 16px;
+  font-size: 13px;
+  color: #898d8c;
 
-  color: ${({ theme }) => theme.colors.text};
-`
-
-export const Activity = styled.View`
-  z-index: 0;
-  flex: 1;
-  padding: 5px;
-`
-
-export const ActivityItem = styled.View`
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 10px;
-  background-color: ${({ theme }) => theme.colors.background};
-
-  ${({ theme }) =>
-    theme.title === 'light' &&
+  ${({ selected }) =>
+    selected &&
     css`
-      shadow-color: ${theme.colors.border};
-      shadow-opacity: 0.26;
-      shadow-offset: 0 2px;
-      shadow-radius: 10px;
-      elevation: 3;
+      color: #5ca066;
+      border-bottom-color: #5ca066;
+      border-bottom-width: 2px;
     `}
-
-  ${({ theme }) =>
-    theme.title === 'dark' &&
-    css`
-      border: 2px solid ${theme.colors.border};
-    `}
-`
-
-export const ActivityMain = styled.View`
-  flex-direction: row;
-  align-items: center;
-`
-
-export const ActivityUserAvatar = styled.View`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  background-color: ${({ theme }) => theme.colors.card};
-  border: 2px solid ${({ theme }) => theme.colors.border};
-`
-
-export const ActivityMainText = styled.Text`
-  font-size: 16px;
-  margin-left: 10px;
-
-  color: ${({ theme }) => theme.colors.text};
-`
-
-export const ActivityDescriptionText = styled.Text`
-  margin: 10px 0;
-  color: ${({ theme }) => theme.colors.text};
-`
-
-export const ActivityDetails = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-export const ActivityValue = styled.Text`
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
-`
-
-export const ActivityDate = styled.Text`
-  /* TODO why I have to use this 'color:black'? */
-  color: black;
-  font-size: 14px;
-  margin-left: 10px;
-  margin-right: auto;
-  padding-left: 10px;
-  border-left-width: 1px;
-  border-left-color: ${({ theme }) => theme.colors.border};
-  color: ${({ theme }) => theme.colors.text};
-`
-
-export const ActivityInteraction = styled.View`
-  flex-direction: row;
-`
-
-export const ActivityComments = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-right: 10px;
-`
-
-export const ActivityCommentsText = styled.Text`
-  margin-left: 5px;
-  color: ${({ theme }) => theme.colors.text};
-`
-
-export const ActivityLikes = styled.View`
-  flex-direction: row;
-  align-items: center;
-`
-
-export const ActivityLikesText = styled.Text`
-  margin-left: 5px;
-  color: ${({ theme }) => theme.colors.text};
 `

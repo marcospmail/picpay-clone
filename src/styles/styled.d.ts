@@ -5,10 +5,12 @@ declare module 'styled-components' {
     title: 'light' | 'dark'
 
     colors: {
+      barStyle: 'default' | 'light-content' | 'dark-content'
       text: string
       background: string
       card: string
       border: string
+      icon: string
     }
   }
 }

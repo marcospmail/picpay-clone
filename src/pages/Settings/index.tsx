@@ -1,25 +1,13 @@
-import React, { useCallback } from 'react'
-import { useTheme } from 'styled-components'
-import { Switch } from 'react-native'
-import { useTheme as useThemeContext } from '../../hooks/theme'
-
-import { Container } from './styles'
+import React from 'react'
+import { View, Text } from 'react-native'
 
 const Settings: React.FC = () => {
-  const theme = useTheme()
-  const { toggle } = useThemeContext()
-
-  const handleToggleTheme = useCallback(() => {
-    toggle()
-  }, [toggle])
-
   return (
-    <Container>
-      <Switch
-        onValueChange={handleToggleTheme}
-        value={theme.title === 'dark'}
-      />
-    </Container>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontWeight: 'bold' }}>
+        There&apos;s nothing to see here, my old friend.
+      </Text>
+    </View>
   )
 }
 

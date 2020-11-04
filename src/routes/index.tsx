@@ -1,8 +1,8 @@
 import React from 'react'
+import { useTheme } from 'styled-components'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
-import Icon from 'react-native-vector-icons/FontAwesome'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 import Home from '../pages/Home'
 import PayButton from '../components/PayButton'
@@ -26,7 +26,7 @@ const pages: Pages = {
     label: 'Início'
   },
   Carteira: {
-    iconName: 'google-wallet',
+    iconName: 'wallet',
     label: 'Carteira'
   },
   Notificações: {
@@ -40,6 +40,8 @@ const pages: Pages = {
 }
 
 const Routes: React.FC = () => {
+  const theme = useTheme()
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -47,18 +49,17 @@ const Routes: React.FC = () => {
         tabBarOptions={{
           activeTintColor: 'green',
           inactiveTintColor: 'black'
-          // labelStyle: {
-          //   color: 'black'
-          // }
         }}
-        screenOptions={({ route, navigation }) => ({
+        screenOptions={({ route }) => ({
           tabBarIcon: ({ focused }) => {
             if (route.name === 'Pagar')
               return <PayButton style={{ marginBottom: 20 }} />
 
-            const color = focused ? 'green' : 'black'
-            const { iconName, label } = pages[route.name]
-            return <Icon name={iconName} size={24} color={color} />
+            const color = focused ? theme.colors.icon : '#5B5E61'
+            const { iconName } = pages[route.name]
+            return (
+              <FontAwesome5 name={iconName} size={24} color={color} solid />
+            )
           }
         })}
       >
