@@ -5,9 +5,9 @@ const light: DefaultTheme = {
 
   colors: {
     barStyle: 'dark-content',
-    text: 'black',
-    background: 'white',
-    card: 'white',
+    text: '#000',
+    background: '#FFF',
+    card: '#FFF',
     border: '#CFCFCF',
     icon: '#13A128'
   }

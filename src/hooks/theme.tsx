@@ -9,7 +9,7 @@ import { DefaultTheme } from 'styled-components'
 
 import light from '../styles/themes/light'
 import dark from '../styles/themes/dark'
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 interface ThemeContextData {
   theme: DefaultTheme
